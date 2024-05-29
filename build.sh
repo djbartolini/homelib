@@ -9,7 +9,7 @@ BIN_DIR=bin
 mkdir -p $OBJ_DIR $LIB_DIR $BIN_DIR
 
 # Find all .c files in specific directories recursively excluding CMakeLists.txt and cmake-build-debug directory, and print their names
-c_files=$(find src test -type f -name "*.c" ! -name "CMakeLists.txt" ! -path "./cmake-build-debug/*" -print)
+c_files=$(find src test -type f -name "*.c" ! -name "CMakeLists.txt" ! -path "./cmake-build-debug/*" ! -path "./lib/*" -print)
 
 # Print the list of .c files
 echo "Found C source files:"
@@ -27,7 +27,7 @@ mkdir -p $LIB_DIR
 ar rcs $LIB_DIR/libhomelib.a $OBJ_DIR/*.o
 
 # Compile the test program
-gcc -o $BIN_DIR/test_program test/test_homelib.c -Iinclude -L$LIB_DIR -lhomelib
+clang -o $BIN_DIR/homelib_test test/test_homelib.c -Iinclude -L$LIB_DIR -lhomelib
 
 # Run the test program
-$BIN_DIR/test_program
+$BIN_DIR/homelib_test

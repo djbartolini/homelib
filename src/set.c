@@ -1,7 +1,7 @@
 #include "../include/set.h"
 
 // Hash function
-size_t hashFunction(int value, size_t capacity) {
+size_t set_hash_function(int value, size_t capacity) {
     return (size_t)(value % capacity);
 }
 
@@ -25,7 +25,7 @@ Set* set_create(size_t capacity)
 
 void set_add(Set *set, int value)
 {
-    size_t index = hashFunction(value, set->capacity);
+    size_t index = set_hash_function(value, set->capacity);
     SetNode *node = set->buckets[index];
 
     // Check if the value is already in the set
@@ -48,7 +48,7 @@ void set_add(Set *set, int value)
 
 void set_remove(Set *set, int value)
 {
-    size_t index = hashFunction(value, set->capacity);
+    size_t index = set_hash_function(value, set->capacity);
     SetNode *node = set->buckets[index];
     SetNode *prev = NULL;
 
@@ -79,7 +79,7 @@ void set_remove(Set *set, int value)
 
 int set_contains(Set *set, int value)
 {
-    size_t index = hashFunction(value, set->capacity);
+    size_t index = set_hash_function(value, set->capacity);
     SetNode *node = set->buckets[index];
 
     // Search for the value in the linked list

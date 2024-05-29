@@ -22,9 +22,6 @@ typedef struct
     size_t value_size;
 } HashTable;
 
-// Hash function
-size_t hashFunction(const char *key, size_t capacity);
-
 // Create a new node
 HashNode* createHashNode(const char *key, void *value, size_t value_size);
 

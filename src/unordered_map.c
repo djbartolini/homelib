@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
-size_t hashFunction(const char *key, size_t capacity)
+size_t unordered_map_hash_function(const char *key, size_t capacity)
 {
     size_t hash = 0;
     while (*key)
@@ -39,7 +39,7 @@ HashTable* createHashTable(size_t value_size)
 
 void hashTableInsert(HashTable *hashTable, const char *key, void *value)
 {
-    size_t index = hashFunction(key, hashTable->capacity);
+    size_t index = unordered_map_hash_function(key, hashTable->capacity);
     HashNode *node = hashTable->buckets[index];
 
     while (node)
@@ -60,7 +60,7 @@ void hashTableInsert(HashTable *hashTable, const char *key, void *value)
 
 void* hashTableLookup(HashTable *hashTable, const char *key)
 {
-    size_t index = hashFunction(key, hashTable->capacity);
+    size_t index = unordered_map_hash_function(key, hashTable->capacity);
     HashNode *node = hashTable->buckets[index];
 
     while (node)
